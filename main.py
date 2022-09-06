@@ -2,9 +2,13 @@ import discord
 import random
 from discord.ext import commands
 from time import sleep
+import os
 
 intents = discord.Intents.all()
 bot = discord.Bot(intents=intents)
+
+ins = list(os.getenv("INSULTS"))
+com = list(os.getenv("COMPLIMENTS"))
 
 @bot.slash_command(name="repeat")
 async def add(ctx, message: discord.Option(str)):
@@ -13,15 +17,15 @@ async def add(ctx, message: discord.Option(str)):
 @bot.slash_command(name="insult")
 async def add(ctx, user: discord.Option(str)):
     user = f"{user}"
-    await ctx.respond(user + " " + random.choice(["Gets no bitches", "Is a nonce", "Is bad at games", "Likes big sweaty black men", "Is a peasant", "All dick no balss", "You’re the reason soap has instructions", "If you search vegetable on Google your the first thing that comes up"]))
+    await ctx.respond(user + " " + random.choice(ins))
 @bot.slash_command(name="compliment")
 async def add(ctx, user: discord.Option(str)):
     user = f"{user}"
     print(user)
     if user == "<@!860101465087148052>":
-        await ctx.respond(user + " " + random.choice(["Gets no bitches", "Is a nonce", "Is bad at games", "Likes big sweaty black men", "Is a peasant", "All dick no balss", "You’re the reason soap has instructions", "If you search vegetable on Google your the first thing that comes up"]))
+        await ctx.respond(user + " " + random.choice(ins))
     else:
-        await ctx.respond(user + " " + random.choice(["I like your shoes", "You have nice balls 🥰", "Is good at games", "You smell like butter", "You look extra spicy today"]))
+        await ctx.respond(user + " " + random.choice(com))
 @bot.slash_command(name="reccomend-song")
 async def add(ctx, song: discord.Option(str), author: discord.Option(str)):
     song = f"{song}"
@@ -79,4 +83,4 @@ gay = "yes"
 @bot.slash_command(name="is-mfbot-gay")
 async def add(ctx):
     ctx.respond(str(gay))
-bot.run(os.getenv("TOKEN")
+bot.run(os.getenv("TOKEN"))
